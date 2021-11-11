@@ -1,0 +1,172 @@
+<!-- Code template taken from Yannai A. Gonczarowski. 
+    Thanks, Yannai for this beautiful landing page! -->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="StyleSheet" href="css/main.css" type="text/css"/>
+        <style>
+            h2 > img {
+                border: 0px;
+                margin: 20px;
+            }
+            table#crackfiller td:first-child,
+            table#scientificormusical td.scientific {
+                background-color: white;
+            }
+            table#crackfiller td:last-child,
+            table#scientificormusical td.musical {
+                background-color: black;
+            }
+            table#scientificormusical.scientific td > div,
+            table#scientificormusical.musical td > div,
+            table#scientificormusical.erdosbacon td > div {
+                opacity: 0;
+            }
+            table#scientificormusical.rmlinks td > div a {
+                display: none;
+            }
+            table#scientificormusical.erdosbacon tr.erdosbaconbridge td > div {
+                opacity: 1;
+            }
+            table#scientificormusical.erdosbacon tr.erdosbaconbridge a {
+                text-decoration: none;
+            }
+            table#scientificormusical.undecided {
+                -webkit-transition: none;
+                transition: none;
+            }
+            table#scientificormusical.undecided + table#crackfiller td:first-child,
+            table#scientificormusical.undecided td.scientific {
+                -webkit-transition: none;
+                transition: none;
+            }
+            table#scientificormusical.undecided td > div {
+                -webkit-transition: none;
+                transition: none;
+            }
+        </style>
+
+
+        <script type="text/javascript" src="js/main.js"></script>
+        <script>
+            function scientific() {
+                chooseMode('scientific');
+            }
+            function musical() {
+                chooseMode('musical');
+            }
+            function chooseMode(mode) {
+                document.getElementById('scientificormusical').className = mode;
+                window.setTimeout(function() {
+                    document.getElementById('scientificormusical').className = mode + ' rmlinks';
+                }, 500);
+                window.setTimeout(function() {
+                    document.location = mode + '/';
+                }, 1200);
+            }
+            function erdosBacon() {
+                document.getElementById('scientificormusical').className = 'erdosbacon';
+                window.setTimeout(function() {
+                    document.location = 'erdos-bacon.html';
+                }, 1000);
+            }
+            function reset() {
+            document.getElementById('scientificormusical').className = 'undecided';
+            }
+
+        </script>
+        <title>Anzony Quispe's Home Page</title>
+
+
+    </head>
+
+
+
+    <body onload="setupListeners()">
+        <div id="mobileclipper">
+        
+            <script>setScientificOrMusicalHeight();</script>
+        
+            <table id="scientificormusical" class="undecided">
+                <tr style='height: 16.66666666%'>
+                    <td class="scientific">
+                        <div>
+                            <h1 class="oneoftwo">Anzony</h1>
+                        </div>
+                    </td>
+
+                    <td class="wave" rowspan="5">
+                    </td>
+
+                    <td class="musical">
+                        <div>
+                            <h1 class="twooftwo">Quispe</h1>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style='height: 27.77777777%'>
+                    <td class="scientific">
+                        <div>
+                            <a href="scientific/" onclick="this.blur(); scientific(); return false;">
+                                <h2>
+                                    Scientific Home Page<br>
+                                    <img src="images/math.png">
+                                </h2>
+                            </a>
+                        </div>
+                    </td>
+
+                    <td class="musical">
+                        <div>
+                        <a href="worship/" onclick="this.blur(); musical(); return false;">
+                            <h2>
+                                Worship Home Page<br>
+                                <img src="images/music.png">
+                            </h2>
+                        </a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style='height: 11.11111111%' class="erdosbaconbridge">
+                    <td class="scientific">
+                        <div>
+                        <h3 class="oneandtwoofthree">
+                            <a href="http://www.lamolina.edu.pe/" target="_blank" class="oneofthree">
+                                UNALM
+                            </a>
+                            <span class="twoofthree">
+                                <!-- <a href="erdos-bacon.html" class="twoofthreeinner"> -->
+                                <!-- &nbsp;&nbsp;&nbsp;&#151;&nbsp;&nbsp;&nbsp; -->
+                                <!-- </a> -->
+                            </span>
+                        </h3>
+                        </div>
+                    </td>
+
+                    <td class="musical">
+                        <div>
+                            <h3 class="threeofthree">
+                                <a href="https://www.facebook.com/masnaciones" target="_blank" >
+                                Más Naciones
+                                </a>
+                            </h3>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr style='height: 44.44444444%'>
+                    <td class="scientific"></td>
+                    <td class="musical"></td>
+                </tr>
+            </table>
+            <table id="crackfiller">
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
