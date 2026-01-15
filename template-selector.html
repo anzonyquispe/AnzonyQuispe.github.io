@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Template - Anzony Quispe</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1e293b;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        .selector-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #f1f5f9;
+        }
+        .selector-header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .selector-header p {
+            color: #94a3b8;
+        }
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .template-card {
+            background: #0f172a;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid #334155;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .template-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(56, 189, 248, 0.2);
+        }
+        .template-preview {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        .template-preview iframe {
+            width: 200%;
+            height: 200%;
+            transform: scale(0.5);
+            transform-origin: top left;
+            border: none;
+            pointer-events: none;
+        }
+        .template-info {
+            padding: 1rem;
+            border-top: 1px solid #334155;
+        }
+        .template-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #f1f5f9;
+            margin-bottom: 0.25rem;
+        }
+        .template-desc {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 0.75rem;
+        }
+        .color-swatches {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .swatch {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #475569;
+        }
+        .select-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .select-btn:hover {
+            background: #1d4ed8;
+        }
+        .template-card[data-template="emerald"] .select-btn { background: #0d9488; }
+        .template-card[data-template="emerald"] .select-btn:hover { background: #0f766e; }
+        .template-card[data-template="violet"] .select-btn { background: #7c3aed; }
+        .template-card[data-template="violet"] .select-btn:hover { background: #6d28d9; }
+        .template-card[data-template="warm"] .select-btn { background: #ea580c; }
+        .template-card[data-template="warm"] .select-btn:hover { background: #c2410c; }
+        .template-card[data-template="dark"] .select-btn { background: #38bdf8; color: #0f172a; }
+        .template-card[data-template="dark"] .select-btn:hover { background: #0ea5e9; }
+
+        .instructions {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #0f172a;
+            border-radius: 8px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .instructions h3 {
+            color: #f1f5f9;
+            margin-bottom: 0.5rem;
+        }
+        .instructions p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .instructions code {
+            background: #1e293b;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'IBM Plex Mono', monospace;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+<body>
+    <div class="selector-header">
+        <h1>Choose Your Template</h1>
+        <p>Click on a template to preview it in full, or click "Use This Template" to select it</p>
+    </div>
+
+    <div class="templates-grid">
+        <!-- Blue Template -->
+        <div class="template-card" data-template="blue">
+            <div class="template-preview">
+                <iframe src="preview-blue.html"></iframe>
+            </div>
+            <div class="template-info">
+                <div class="template-name">Classic Blue</div>
+                <div class="template-desc">Clean, professional blue theme - perfect for academics</div>
+                <div class="color-swatches">
+                    <div class="swatch" style="background: #ffffff;"></div>
+                    <div class="swatch" style="background: #2563eb;"></div>
+                    <div class="swatch" style="background: #0f172a;"></div>
+                </div>
+            </div>
+            <button class="select-btn" onclick="selectTemplate('blue')">Use This Template</button>
+        </div>
+
+        <!-- Emerald Template -->
+        <div class="template-card" data-template="emerald">
+            <div class="template-preview">
+                <iframe src="preview-emerald.html"></iframe>
+            </div>
+            <div class="template-info">
+                <div class="template-name">Emerald Teal</div>
+                <div class="template-desc">Fresh, modern teal/green palette - calming and distinctive</div>
+                <div class="color-swatches">
+                    <div class="swatch" style="background: #ffffff;"></div>
+                    <div class="swatch" style="background: #0d9488;"></div>
+                    <div class="swatch" style="background: #134e4a;"></div>
+                </div>
+            </div>
+            <button class="select-btn" onclick="selectTemplate('emerald')">Use This Template</button>
+        </div>
+
+        <!-- Violet Template -->
+        <div class="template-card" data-template="violet">
+            <div class="template-preview">
+                <iframe src="preview-violet.html"></iframe>
+            </div>
+            <div class="template-info">
+                <div class="template-name">Elegant Violet</div>
+                <div class="template-desc">Sophisticated purple theme - unique and memorable</div>
+                <div class="color-swatches">
+                    <div class="swatch" style="background: #faf5ff;"></div>
+                    <div class="swatch" style="background: #7c3aed;"></div>
+                    <div class="swatch" style="background: #3b0764;"></div>
+                </div>
+            </div>
+            <button class="select-btn" onclick="selectTemplate('violet')">Use This Template</button>
+        </div>
+
+        <!-- Warm Template -->
+        <div class="template-card" data-template="warm">
+            <div class="template-preview">
+                <iframe src="preview-warm.html"></iframe>
+            </div>
+            <div class="template-info">
+                <div class="template-name">Warm Terracotta</div>
+                <div class="template-desc">Warm orange/terracotta - inviting and approachable</div>
+                <div class="color-swatches">
+                    <div class="swatch" style="background: #fffbeb;"></div>
+                    <div class="swatch" style="background: #ea580c;"></div>
+                    <div class="swatch" style="background: #78350f;"></div>
+                </div>
+            </div>
+            <button class="select-btn" onclick="selectTemplate('warm')">Use This Template</button>
+        </div>
+
+        <!-- Dark Template -->
+        <div class="template-card" data-template="dark">
+            <div class="template-preview">
+                <iframe src="preview-dark.html"></iframe>
+            </div>
+            <div class="template-info">
+                <div class="template-name">Dark Mode</div>
+                <div class="template-desc">Sleek dark theme with cyan accents - modern and bold</div>
+                <div class="color-swatches">
+                    <div class="swatch" style="background: #0f172a;"></div>
+                    <div class="swatch" style="background: #38bdf8;"></div>
+                    <div class="swatch" style="background: #f1f5f9;"></div>
+                </div>
+            </div>
+            <button class="select-btn" onclick="selectTemplate('dark')">Use This Template</button>
+        </div>
+    </div>
+
+    <div class="instructions">
+        <h3>How to Apply Your Choice</h3>
+        <p>Click "Use This Template" and I'll update your <code>index.html</code> to use that template's CSS file.</p>
+    </div>
+
+    <script>
+        function selectTemplate(template) {
+            const templateNames = {
+                'blue': 'Classic Blue',
+                'emerald': 'Emerald Teal',
+                'violet': 'Elegant Violet',
+                'warm': 'Warm Terracotta',
+                'dark': 'Dark Mode'
+            };
+            alert('You selected: ' + templateNames[template] + '\n\nTell Claude to apply template "' + template + '" to your website.');
+        }
+
+        // Make cards clickable to open full preview
+        document.querySelectorAll('.template-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.classList.contains('select-btn')) return;
+                const template = this.dataset.template;
+                window.open('preview-' + template + '.html', '_blank');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,109 +1,140 @@
-// Copyright Yannai A. Gonczarowski, all rights reserved.
-function header(menu, current, mode) {
-if (window.navigator.userAgent.match(/webkit/i) &&
-window.navigator.userAgent.match(/mobile/i)) {
-document.write('<div id="mobileclipper" style="display: none">' +
-'<div id="scientificormusical" class="' + mode + '">' +
-'<div class="scientific"></div>' +
-'<div class="musical"></div>' +
-'</div>' +
-'</div>');
-} else {
-document.write('<div id="mobileclipper" style="display: none">' +
-'<table id="scientificormusical" class="' + mode + '">' +
-'<tr>' +
-'<td class="scientific"></td>' +
-'<td class="wave"></td>' +
-'<td class="musical"></td>' +
-'</tr>' +
-'</table>' +
-'</div>');
+/* ===========================================
+   MAIN.JS - Renders content from data.js
+   =========================================== */
+
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    renderPapers('working-papers', siteData.workingPapers);
+    renderPapers('publications', siteData.publications);
+    renderPapers('books', siteData.books);
+    renderSoftware();
+    renderTeam();
+    renderProjects();
+    renderTeaching();
+    renderAlumni();
+});
+
+function renderPapers(id, papers) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (!papers || papers.length === 0) {
+        el.innerHTML = '<li class="empty">Coming soon.</li>';
+        return;
+    }
+
+    el.innerHTML = papers.map(p => `
+        <li>
+            <span class="paper-title">${p.title}</span>
+            ${p.authors ? `<br><span class="paper-authors">${p.authors}</span>` : ''}
+            ${p.venue ? `<br><span class="paper-venue">${p.venue}</span>` : ''}
+            ${p.links?.length ? `<div class="paper-links">${p.links.map(l => `[<a href="${l.url}" target="_blank">${l.text}</a>]`).join(' ')}</div>` : ''}
+        </li>
+    `).join('');
 }
-drawMenu(menu, current);
-document.write('<br>');
+
+function renderSoftware() {
+    const el = document.getElementById('software-list');
+    if (!el) return;
+
+    if (!siteData.software?.length) {
+        el.innerHTML = '<li class="empty">Coming soon.</li>';
+        return;
+    }
+
+    el.innerHTML = siteData.software.map(s => `
+        <li>
+            <span class="software-name"><a href="${s.links?.[0]?.url || '#'}" target="_blank">${s.name}</a></span>
+            <span class="software-desc"> — ${s.description}</span>
+            <br><span class="software-meta">${s.authors}${s.downloads ? ` · <span class="downloads">${s.downloads} downloads</span>` : ''}</span>
+            ${s.links?.length ? `<div class="software-links">${s.links.map(l => `[<a href="${l.url}" target="_blank">${l.text}</a>]`).join(' ')}</div>` : ''}
+        </li>
+    `).join('');
 }
-function footer(menu, current, opt_other, opt_last_modified) {
-document.write('<br clear="all">');
-drawMenu(menu, current);
-drawCopyright(opt_other, opt_last_modified);
+
+function renderTeam() {
+    const el = document.getElementById('team-list');
+    if (!el) return;
+
+    if (!siteData.team?.length) {
+        el.innerHTML = '<p class="empty">Coming soon.</p>';
+        return;
+    }
+
+    el.innerHTML = siteData.team.map(m => {
+        const hasLink = m.url && m.url.trim() !== '';
+        return `
+            <div class="team-card ${hasLink ? 'has-link' : ''}">
+                <span class="team-name">
+                    ${hasLink ? `<a href="${m.url}" target="_blank">${m.name}</a>` : m.name}
+                </span>
+                ${m.affiliation ? `<span class="team-affiliation">${m.affiliation}</span>` : ''}
+                ${hasLink ? '<span class="team-link-icon">↗</span>' : ''}
+            </div>
+        `;
+    }).join('');
 }
-function drawCopyright(opt_other, opt_last_modified) {
-document.write('<p class="copyright preload">');
-document.write('&copy; Yannai A. Gonczarowski');
-if (opt_other != null) {
-document.write('; ' + opt_other);
+
+function renderProjects() {
+    const el = document.getElementById('projects-list');
+    if (!el) return;
+
+    if (!siteData.ongoingProjects?.length) {
+        el.innerHTML = '<li class="empty">Coming soon.</li>';
+        return;
+    }
+
+    el.innerHTML = siteData.ongoingProjects.map(p => `
+        <li class="project-item">
+            <span class="project-title">${p.title}</span>
+            ${p.description ? `<br><span class="project-desc">${p.description}</span>` : ''}
+            ${p.team?.length ? `<br><span class="project-team">Team: ${p.team.join(', ')}</span>` : ''}
+        </li>
+    `).join('');
 }
-if (opt_last_modified != null) {
-document.write('; content last modified: ' + opt_last_modified);
+
+function renderTeaching() {
+    const el = document.getElementById('teaching-list');
+    if (!el) return;
+
+    if (!siteData.teaching?.length) {
+        el.innerHTML = '<li class="empty">Coming soon.</li>';
+        return;
+    }
+
+    el.innerHTML = siteData.teaching.map(t => `
+        <li class="teaching-item">
+            <span class="teaching-course">${t.course}</span>
+            <span class="teaching-meta">${t.institution}, ${t.years}</span>
+        </li>
+    `).join('');
 }
-document.write('</p>');
+
+function renderAlumni() {
+    const el = document.getElementById('alumni-list');
+    if (!el) return;
+
+    if (!siteData.studentsByCourse?.length) {
+        el.innerHTML = '<p class="empty">To be updated.</p>';
+        return;
+    }
+
+    el.innerHTML = siteData.studentsByCourse.map(course => `
+        <div class="course-group">
+            <div class="course-header">
+                <h3 class="course-title">${course.course}</h3>
+                <span class="course-meta">${course.institution}, ${course.year}</span>
+                ${course.repoUrl ? `<a href="${course.repoUrl}" target="_blank" class="course-repo">Repository ↗</a>` : ''}
+            </div>
+            <div class="students-grid">
+                ${course.students.map(s => `
+                    <a href="${s.url}" target="_blank" class="student-card">
+                        <span class="student-name">${s.name}</span>
+                        <span class="student-link-icon">↗</span>
+                    </a>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
 }
-function drawMenu(menu, current) {
-document.write('<p class="menu">');
-for (var i = 0; i < menu.length; ++i) {
-var shouldLink = (i == current || menu[i].length == 1);
-var external = (menu[i].length > 1 && menu[i][1].substr(0, 4) == 'http');
-document.write('<' +
-(shouldLink ?
-'span' :
-'a class="menuitem" href="' + menu[i][1] + '"' +
-(menu[i].length == 2 ?
-'' :
-(' onclick="' + menu[i][2] + '; return ' +
-(external ? 'true' : 'false') + '"'
-)
-) +
-(external? ' target="_blank"' : '')
-) +
-' class="menuitem">');
-document.write(menu[i][0]);
-document.write('</' + (shouldLink ? 'span' : 'a') + '> ');
-}
-document.write('</p>');
-}
-function switchMode(mode) {
-if (mode == 'undecided') {
-document.body.style.overflow = 'hidden';
-}
-document.getElementById('mobileclipper').style.display = '';
-window.setTimeout(function() {
-setScientificOrMusicalHeight();
-document.getElementById('scientificormusical').className = mode;
-}, 20);
-window.setTimeout(function() {
-document.location = (mode == 'undecided' ? '../' : '../' + mode + '/');
-}, mode == 'undecided' ? 1000 : 1200);
-}
-function reload() {
-window.location.reload();
-}
-function setupListeners() {
-window.onpageshow = reset;
-window.onorientationchange = reload;
-window.screen.onmozorientationchange = reload;
-}
-function resetToMode(mode) {
-document.body.style.overflow = '';
-document.getElementById('mobileclipper').style.display = 'none';
-document.getElementById('scientificormusical').className = mode;
-}
-function setScientificOrMusicalHeight() {
-var ua = window.navigator.userAgent;
-if ((ua.match(/mobile/i) ||
-ua.match(/android/i)) &&
-!ua.match(/firefox/i) && !ua.match(/OPR/)) {
-window.onresize = function() { window.setTimeout(reload, 700); };
-var clipperHeight = window.innerHeight;
-var sheet = document.styleSheets[0];
-sheet.insertRule("#scientificormusical { height: " + clipperHeight*1.8 + " !important; top: 0 !important; }", 0);
-sheet.insertRule("table#scientificormusical.erdosbacon { top: " + clipperHeight*-.8 + " !important; }", 0);
-}
-}
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-44056000-1']);
-_gaq.push(['_trackPageview']);
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();

@@ -1,174 +1,127 @@
-<!-- Code template taken from Yannai A. Gonczarowski. 
-    Thanks, Yannai for this beautiful landing page! -->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="StyleSheet" href="css/main.css" type="text/css"/>
-        <style>
-            h2 > img {
-                border: 0px;
-                margin: 20px;
-            }
-            table#crackfiller td:first-child,
-            table#scientificormusical td.scientific {
-                background-color: white;
-            }
-            table#crackfiller td:last-child,
-            table#scientificormusical td.musical {
-                background-color: black;
-            }
-            table#scientificormusical.scientific td > div,
-            table#scientificormusical.musical td > div,
-            table#scientificormusical.erdosbacon td > div {
-                opacity: 0;
-            }
-            table#scientificormusical.rmlinks td > div a {
-                display: none;
-            }
-            table#scientificormusical.erdosbacon tr.erdosbaconbridge td > div {
-                opacity: 1;
-            }
-            table#scientificormusical.erdosbacon tr.erdosbaconbridge a {
-                text-decoration: none;
-            }
-            table#scientificormusical.undecided {
-                -webkit-transition: none;
-                transition: none;
-            }
-            table#scientificormusical.undecided + table#crackfiller td:first-child,
-            table#scientificormusical.undecided td.scientific {
-                -webkit-transition: none;
-                transition: none;
-            }
-            table#scientificormusical.undecided td > div {
-                -webkit-transition: none;
-                transition: none;
-            }
-        </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anzony Quispe</title>
+    <link rel="stylesheet" href="css/style.css" id="theme-stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="profile">
+                <img src="assets/img/profile.jpg" alt="Anzony Quispe" class="photo">
+                <div class="info">
+                    <h1>Anzony Quispe</h1>
+                    <p class="position">Research Assistant, <a href="https://www.sciencespo.fr/department-economics/" target="_blank">Sciences Po Paris</a></p>
+                    <p class="contact">
+                        <a href="mailto:anzony.quispe@gmail.com">anzony.quispe@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+            <nav class="nav">
+                <a href="cv/AQ_CV.pdf" target="_blank">CV</a>
+                <a href="https://github.com/anzonyquispe" target="_blank">GitHub</a>
+                <a href="https://scholar.google.com" target="_blank">Google Scholar</a>
+            </nav>
+        </header>
 
+        <hr>
 
-        <script type="text/javascript" src="js/main.js"></script>
-        <script>
-            function scientific() {
-                chooseMode('scientific');
-            }
-            function musical() {
-                chooseMode('musical');
-            }
-            function chooseMode(mode) {
-                document.getElementById('scientificormusical').className = mode;
-                window.setTimeout(function() {
-                    document.getElementById('scientificormusical').className = mode + ' rmlinks';
-                }, 500);
-                window.setTimeout(function() {
-                    document.location = mode + '/';
-                }, 1200);
-            }
-            function erdosBacon() {
-                document.getElementById('scientificormusical').className = 'erdosbacon';
-                window.setTimeout(function() {
-                    document.location = 'erdos-bacon.html';
-                }, 1000);
-            }
-            function reset() {
-            document.getElementById('scientificormusical').className = 'undecided';
-            }
+        <!-- About -->
+        <section class="section">
+            <p>
+                I am a researcher working at the intersection of <strong>econometrics</strong>, <strong>causal inference</strong>,
+                and <strong>computational methods</strong>. My work focuses on developing difference-in-differences estimators,
+                machine learning applications for causal inference, and environmental economics.
+            </p>
+            <p>
+                I develop open-source statistical software used by researchers worldwide, with over 170,000 downloads.
+                Previously, I was a Research Specialist at <a href="https://spia.princeton.edu/" target="_blank">Princeton SPIA</a>.
+            </p>
+            <p>
+                <strong>Education:</strong> M.Sc. Economics, <a href="https://www.udesa.edu.ar/" target="_blank">Universidad de San Andres</a> (Argentina).
+                B.Sc. Economics, <a href="http://www.lamolina.edu.pe/" target="_blank">Universidad Nacional Agraria La Molina</a> (Peru).
+            </p>
+        </section>
 
-        </script>
-        <title>Anzony Quispe's Home Page</title>
+        <hr>
 
+        <!-- Working Papers -->
+        <section class="section">
+            <h2>Working Papers</h2>
+            <ul id="working-papers"></ul>
+        </section>
 
-    </head>
+        <hr>
 
+        <!-- Publications -->
+        <section class="section">
+            <h2>Publications</h2>
+            <ul id="publications"></ul>
+        </section>
 
+        <hr>
 
-    <body onload="setupListeners()">
-        <div id="mobileclipper">
-        
-            <script>setScientificOrMusicalHeight();</script>
-        
-            <table id="scientificormusical" class="undecided">
-                <tr style='height: 16.66666666%'>
-                    <td class="scientific">
-                        <div>
-                            <h1 class="oneoftwo">Anzony</h1>
-                        </div>
-                    </td>
+        <!-- Software -->
+        <section class="section">
+            <h2>Software</h2>
+            <ul id="software-list"></ul>
+        </section>
 
-                    <td class="wave" rowspan="5">
-                    </td>
+        <hr>
 
-                    <td class="musical">
-                        <div>
-                            <h1 class="twooftwo">Quispe</h1>
-                        </div>
-                    </td>
-                </tr>
+        <!-- Book -->
+        <section class="section">
+            <h2>Book</h2>
+            <ul id="books"></ul>
+        </section>
 
-                <tr style='height: 27.77777777%'>
-                    <td class="scientific">
+        <hr>
 
-                        <div>
-                            <a href="scientific/science.html" >
+        <!-- Research Team -->
+        <section class="section">
+            <h2>Research Team</h2>
+            <div id="team-list" class="team-grid"></div>
+        </section>
 
-                                <h2>
-                                    Scientific Home Page<br>
-                                    <img src="images/math.png">
-                                </h2>
-                            </a>
-                        </div>
-                    </td>
+        <hr>
 
-                    <td class="musical">
-                        <div>
-                        <a href="worship/" onclick="this.blur(); musical(); return false;">
-                            <h2>
-                                Worship Home Page<br>
-                                <img src="images/music.png">
-                            </h2>
-                        </a>
-                        </div>
-                    </td>
-                </tr>
+        <!-- Ongoing Projects -->
+        <section class="section">
+            <h2>Ongoing Projects</h2>
+            <ul id="projects-list"></ul>
+        </section>
 
-                <tr style='height: 11.11111111%' class="erdosbaconbridge">
-                    <td class="scientific">
-                        <div>
-                        <h3 class="oneandtwoofthree">
-                            <a href="http://www.lamolina.edu.pe/" target="_blank" class="oneofthree">
-                                UNALM
-                            </a>
-                            <span class="twoofthree">
-                                <!-- <a href="erdos-bacon.html" class="twoofthreeinner"> -->
-                                <!-- &nbsp;&nbsp;&nbsp;&#151;&nbsp;&nbsp;&nbsp; -->
-                                <!-- </a> -->
-                            </span>
-                        </h3>
-                        </div>
-                    </td>
+        <hr>
 
-                    <td class="musical">
-                        <div>
-                            <h3 class="threeofthree">
-                                <a href="https://www.facebook.com/masnaciones" target="_blank" >
-                                Más Naciones
-                                </a>
-                            </h3>
-                        </div>
-                    </td>
-                </tr>
+        <!-- Teaching -->
+        <section class="section">
+            <h2>Teaching</h2>
+            <ul id="teaching-list"></ul>
+        </section>
 
-                <tr style='height: 44.44444444%'>
-                    <td class="scientific"></td>
-                    <td class="musical"></td>
-                </tr>
-            </table>
-            <table id="crackfiller">
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </body>
+        <hr>
+
+        <!-- Alumni -->
+        <section class="section">
+            <h2>Alumni</h2>
+            <div id="alumni-list"></div>
+        </section>
+
+        <hr>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; <span id="current-year"></span> Anzony Quispe</p>
+        </footer>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>

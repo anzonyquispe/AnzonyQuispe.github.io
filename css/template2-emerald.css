@@ -1,0 +1,525 @@
+/* ===========================================
+   MINIMALIST ACADEMIC WEBSITE
+   Bright, clean, aesthetic, professional
+   =========================================== */
+
+:root {
+    /* Emerald / Teal palette */
+    --bg: #ffffff;
+    --bg-subtle: #f0fdfa;
+    --text: #134e4a;
+    --text-secondary: #115e59;
+    --text-muted: #5eead4;
+    --accent: #0d9488;
+    --accent-hover: #0f766e;
+    --accent-light: #ccfbf1;
+    --border: #99f6e4;
+    --success: #059669;
+
+    /* Typography */
+    --font-sans: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'IBM Plex Mono', 'SF Mono', 'Consolas', monospace;
+
+    /* Sizing */
+    --max-width: 760px;
+    --radius: 8px;
+}
+
+/* Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Base */
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3.5rem 2rem;
+}
+
+/* Links */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
+}
+
+/* Header */
+.header {
+    margin-bottom: 2rem;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.photo {
+    width: 140px;
+    height: 140px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    object-position: center 20%;
+    flex-shrink: 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+.info h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.35rem;
+    letter-spacing: -0.025em;
+}
+
+.position {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-bottom: 0.35rem;
+}
+
+.contact {
+    font-size: 0.95rem;
+}
+
+/* Navigation */
+.nav {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    padding-top: 0.5rem;
+}
+
+.nav a {
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    transition: all 0.2s ease;
+}
+
+.nav a:hover {
+    background: var(--accent-light);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* Horizontal Rule */
+hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 0;
+}
+
+.section h2 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.section h2::before {
+    content: '';
+    width: 4px;
+    height: 1.35rem;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+.section > p {
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.section > p:last-of-type {
+    margin-bottom: 0;
+}
+
+.section > p strong {
+    color: var(--text);
+}
+
+.section-note {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+/* Lists */
+ul {
+    list-style: none;
+}
+
+.section > ul > li {
+    margin-bottom: 1.5rem;
+    padding-left: 0;
+}
+
+.section > ul > li:last-child {
+    margin-bottom: 0;
+}
+
+/* Paper items */
+.paper-title {
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+.paper-authors {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.paper-venue {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.paper-links {
+    margin-top: 0.35rem;
+    font-size: 0.9rem;
+}
+
+.paper-links a {
+    margin-right: 0.75rem;
+    font-weight: 500;
+}
+
+/* Software items */
+.software-name {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--accent);
+}
+
+.software-name a {
+    color: var(--accent);
+}
+
+.software-name a:hover {
+    color: var(--accent-hover);
+}
+
+.software-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.software-meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.15rem;
+}
+
+.software-meta .downloads {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.software-links {
+    font-size: 0.9rem;
+    margin-top: 0.35rem;
+}
+
+.software-links a {
+    margin-right: 0.75rem;
+    font-weight: 500;
+}
+
+/* Teaching items */
+.teaching-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.teaching-item:last-child {
+    border-bottom: none;
+}
+
+.teaching-course {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.teaching-meta {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Team Grid */
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.team-card {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+}
+
+.team-card.has-link:hover {
+    border-color: var(--accent);
+    transform: translateY(-1px);
+}
+
+.team-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text);
+}
+
+.team-name a {
+    color: var(--text);
+}
+
+.team-name a:hover {
+    color: var(--accent);
+}
+
+.team-affiliation {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.team-link-icon {
+    color: var(--accent);
+    font-size: 0.8rem;
+    opacity: 0.5;
+}
+
+.team-card:hover .team-link-icon {
+    opacity: 1;
+}
+
+/* Project items */
+.project-item {
+    padding: 1rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 1rem;
+}
+
+.project-item:last-child {
+    margin-bottom: 0;
+}
+
+.project-title {
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--text);
+}
+
+.project-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.project-team {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Course Groups */
+.course-group {
+    margin-bottom: 2rem;
+}
+
+.course-group:last-child {
+    margin-bottom: 0;
+}
+
+.course-header {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.course-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+}
+
+.course-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.course-repo {
+    display: inline-block;
+    margin-left: 1rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* Students Grid */
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.75rem;
+}
+
+.student-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.student-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.student-name {
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.student-card:hover .student-name {
+    color: var(--accent);
+}
+
+.student-link-icon {
+    color: var(--accent);
+    font-size: 0.8rem;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.student-card:hover .student-link-icon {
+    opacity: 1;
+}
+
+/* Empty state */
+.empty {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* Footer */
+.footer {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: center;
+    padding-top: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 2rem 1.25rem;
+    }
+
+    .profile {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.25rem;
+    }
+
+    .photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .nav {
+        justify-content: center;
+    }
+
+    .info h1 {
+        font-size: 1.6rem;
+    }
+
+    .teaching-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+    }
+
+    .students-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Print */
+@media print {
+    .container {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    a {
+        color: var(--text);
+    }
+
+    .student-card {
+        break-inside: avoid;
+    }
+}

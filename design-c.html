@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anzony Quispe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================================
+           DESIGN C: BOLD EDITORIAL
+           Inspired by magazine layouts, brutalism
+           High contrast, dramatic, memorable
+           =========================================== */
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #888;
+            --accent: #ff3d00;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--black);
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Hero Section - Full viewport, bold statement */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+        }
+
+        .hero-left {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            font-weight: 400;
+            line-height: 0.95;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-name span {
+            display: block;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero-title {
+            font-size: 1rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-top: 2rem;
+        }
+
+        .hero-title a {
+            color: var(--white);
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .hero-title a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .hero-nav a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .hero-nav a:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            writing-mode: vertical-rl;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--white);
+            mix-blend-mode: difference;
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 6rem 4rem;
+        }
+
+        .section-dark {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+            border-bottom: 1px solid currentColor;
+            padding-bottom: 1rem;
+        }
+
+        .section-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 4rem;
+            font-style: italic;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .section-title {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        /* About Section - Split layout */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+        }
+
+        .about-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+        }
+
+        .about-text {
+            font-size: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .about-text a {
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 4rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray);
+        }
+
+        .stat-number {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+        }
+
+        /* Papers - Magazine style */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0;
+        }
+
+        .paper-card {
+            padding: 2.5rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            transition: background 0.3s;
+        }
+
+        .paper-card:hover {
+            background: rgba(255,61,0,0.1);
+        }
+
+        .paper-index {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .paper-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            line-height: 1.4;
+            margin-bottom: 0.75rem;
+        }
+
+        .paper-authors {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .paper-links {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .paper-link {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--gray);
+            transition: all 0.2s;
+        }
+
+        .paper-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: var(--white);
+        }
+
+        /* Software - Horizontal scroll */
+        .software-scroll {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .software-scroll::-webkit-scrollbar {
+            height: 2px;
+        }
+
+        .software-scroll::-webkit-scrollbar-track {
+            background: var(--gray);
+        }
+
+        .software-scroll::-webkit-scrollbar-thumb {
+            background: var(--accent);
+        }
+
+        .software-item {
+            flex: 0 0 350px;
+            scroll-snap-align: start;
+            padding: 2rem;
+            border: 1px solid var(--black);
+            position: relative;
+        }
+
+        .software-item::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent);
+        }
+
+        .software-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .software-name a:hover {
+            color: var(--accent);
+        }
+
+        .software-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .software-stats {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        .software-downloads {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Team - Vertical list */
+        .team-list {
+            display: grid;
+            gap: 0;
+        }
+
+        .team-row {
+            display: grid;
+            grid-template-columns: 3fr 2fr 1fr;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            align-items: center;
+            transition: all 0.2s;
+        }
+
+        .team-row:hover {
+            padding-left: 1rem;
+            background: rgba(255,61,0,0.05);
+        }
+
+        .team-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+        }
+
+        .team-name a:hover {
+            color: var(--accent);
+        }
+
+        .team-affiliation {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .team-arrow {
+            text-align: right;
+            color: var(--accent);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .team-row:hover .team-arrow {
+            opacity: 1;
+        }
+
+        /* Teaching */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .teaching-card {
+            padding: 2rem;
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .teaching-year {
+            font-family: 'Instrument Serif', serif;
+            font-size: 3rem;
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .teaching-course {
+            font-size: 1rem;
+            margin-top: 1rem;
+            line-height: 1.4;
+        }
+
+        .teaching-institution {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        /* Alumni */
+        .alumni-marquee {
+            overflow: hidden;
+            padding: 3rem 0;
+            border-top: 1px solid var(--black);
+            border-bottom: 1px solid var(--black);
+        }
+
+        .alumni-course-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            padding: 0 4rem;
+        }
+
+        .alumni-course-title a {
+            color: var(--accent);
+        }
+
+        .alumni-track {
+            display: flex;
+            gap: 3rem;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .alumni-name {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            white-space: nowrap;
+            transition: color 0.2s;
+        }
+
+        .alumni-name:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            font-family: 'Instrument Serif', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            .hero-right {
+                height: 50vh;
+            }
+            .hero-left {
+                padding: 2rem;
+            }
+            .section {
+                padding: 4rem 2rem;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+            .team-row {
+                grid-template-columns: 1fr;
+                gap: 0.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-left">
+            <div>
+                <h1 class="hero-name">Anzony<span>Quispe</span></h1>
+                <p class="hero-title">Research Assistant at <a href="https://www.sciencespo.fr/department-economics/" target="_blank">Sciences Po Paris</a></p>
+            </div>
+            <nav class="hero-nav">
+                <a href="cv/AQ_CV.pdf" target="_blank">CV</a>
+                <a href="https://github.com/anzonyquispe" target="_blank">GitHub</a>
+                <a href="https://scholar.google.com" target="_blank">Scholar</a>
+                <a href="mailto:anzony.quispe@gmail.com">Contact</a>
+            </nav>
+        </div>
+        <div class="hero-right">
+            <img src="assets/img/profile.jpg" alt="Anzony Quispe" class="hero-image">
+            <div class="hero-scroll">Scroll to explore</div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">About</h2>
+        </div>
+        <div class="about-grid">
+            <div class="about-label">Research Focus</div>
+            <div>
+                <p class="about-text">
+                    I work at the intersection of <strong>econometrics</strong>, <strong>causal inference</strong>,
+                    and <strong>computational methods</strong>. My research develops difference-in-differences estimators
+                    and machine learning applications for causal inference.
+                </p>
+                <p class="about-text" style="margin-top: 1.5rem;">
+                    Previously at <a href="https://spia.princeton.edu/" target="_blank">Princeton SPIA</a>.
+                    M.Sc. from <a href="https://www.udesa.edu.ar/" target="_blank">San Andres</a>;
+                    B.Sc. from <a href="http://www.lamolina.edu.pe/" target="_blank">UNALM</a>.
+                </p>
+                <div class="about-stats">
+                    <div>
+                        <div class="stat-number">170K+</div>
+                        <div class="stat-label">Downloads</div>
+                    </div>
+                    <div>
+                        <div class="stat-number">5+</div>
+                        <div class="stat-label">Packages</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Working Papers -->
+    <section class="section section-dark">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Working Papers</h2>
+        </div>
+        <div id="papers-c" class="papers-grid"></div>
+    </section>
+
+    <!-- Software -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Software</h2>
+        </div>
+        <div id="software-c" class="software-scroll"></div>
+    </section>
+
+    <!-- Team -->
+    <section class="section section-dark">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Research Team</h2>
+        </div>
+        <div id="team-c" class="team-list"></div>
+    </section>
+
+    <!-- Teaching -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-number">05</span>
+            <h2 class="section-title">Teaching</h2>
+        </div>
+        <div id="teaching-c" class="teaching-grid"></div>
+    </section>
+
+    <!-- Alumni -->
+    <section class="section" style="padding-left: 0; padding-right: 0;">
+        <div class="section-header" style="padding: 0 4rem;">
+            <span class="section-number">06</span>
+            <h2 class="section-title">Alumni</h2>
+        </div>
+        <div id="alumni-c"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-brand">AQ &copy; 2025</div>
+        <nav class="footer-links">
+            <a href="cv/AQ_CV.pdf" target="_blank">CV</a>
+            <a href="https://github.com/anzonyquispe" target="_blank">GitHub</a>
+            <a href="mailto:anzony.quispe@gmail.com">Email</a>
+        </nav>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script>
+        function renderDesignC() {
+            // Working Papers
+            const papersContainer = document.getElementById('papers-c');
+            if (papersContainer && siteData.workingPapers) {
+                const allPapers = [...siteData.workingPapers, ...(siteData.publications || [])];
+                papersContainer.innerHTML = allPapers.map((p, i) => `
+                    <div class="paper-card">
+                        <div class="paper-index">0${i + 1}</div>
+                        <div class="paper-title">${p.title}</div>
+                        <div class="paper-authors">${p.authors}</div>
+                        ${p.venue ? `<div class="paper-authors" style="font-style: italic; margin-top: 0.25rem;">${p.venue}</div>` : ''}
+                        ${p.links && p.links.length ? `<div class="paper-links">${p.links.map(l => `<a href="${l.url}" target="_blank" class="paper-link">${l.text}</a>`).join('')}</div>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            // Software
+            const swContainer = document.getElementById('software-c');
+            if (swContainer && siteData.software) {
+                swContainer.innerHTML = siteData.software.map(s => `
+                    <div class="software-item">
+                        <div class="software-name"><a href="${s.repoUrl}" target="_blank">${s.name}</a></div>
+                        <div class="software-desc">${s.description}</div>
+                        <div class="software-stats">
+                            <span>${s.language}</span>
+                            <span class="software-downloads">${s.downloads}</span>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Team
+            const teamContainer = document.getElementById('team-c');
+            if (teamContainer && siteData.team) {
+                teamContainer.innerHTML = siteData.team.map(t => `
+                    <div class="team-row">
+                        <div class="team-name">${t.url ? `<a href="${t.url}" target="_blank">${t.name}</a>` : t.name}</div>
+                        <div class="team-affiliation">${t.affiliation || 'Collaborator'}</div>
+                        <div class="team-arrow">${t.url ? '&rarr;' : ''}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Teaching
+            const teachContainer = document.getElementById('teaching-c');
+            if (teachContainer && siteData.teaching) {
+                teachContainer.innerHTML = siteData.teaching.map(t => `
+                    <div class="teaching-card">
+                        <div class="teaching-year">${t.year}</div>
+                        <div class="teaching-course">${t.course}</div>
+                        <div class="teaching-institution">${t.institution}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Alumni - Marquee style
+            const alumniContainer = document.getElementById('alumni-c');
+            if (alumniContainer && siteData.studentsByCourse) {
+                alumniContainer.innerHTML = siteData.studentsByCourse.map(course => {
+                    const doubled = [...course.students, ...course.students];
+                    return `
+                        <div class="alumni-marquee">
+                            <div class="alumni-course-title">${course.course} &middot; ${course.institution} ${course.year} &middot; <a href="${course.repoUrl}" target="_blank">Repository</a></div>
+                            <div class="alumni-track">
+                                ${doubled.map(s => `<a href="${s.github}" target="_blank" class="alumni-name">${s.name}</a>`).join('')}
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+        renderDesignC();
+    </script>
+</body>
+</html>
