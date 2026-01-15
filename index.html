@@ -1,174 +1,796 @@
-<!-- Code template taken from Yannai A. Gonczarowski. 
-    Thanks, Yannai for this beautiful landing page! -->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <link rel="StyleSheet" href="css/main.css" type="text/css"/>
-        <style>
-            h2 > img {
-                border: 0px;
-                margin: 20px;
-            }
-            table#crackfiller td:first-child,
-            table#scientificormusical td.scientific {
-                background-color: white;
-            }
-            table#crackfiller td:last-child,
-            table#scientificormusical td.musical {
-                background-color: black;
-            }
-            table#scientificormusical.scientific td > div,
-            table#scientificormusical.musical td > div,
-            table#scientificormusical.erdosbacon td > div {
-                opacity: 0;
-            }
-            table#scientificormusical.rmlinks td > div a {
-                display: none;
-            }
-            table#scientificormusical.erdosbacon tr.erdosbaconbridge td > div {
-                opacity: 1;
-            }
-            table#scientificormusical.erdosbacon tr.erdosbaconbridge a {
-                text-decoration: none;
-            }
-            table#scientificormusical.undecided {
-                -webkit-transition: none;
-                transition: none;
-            }
-            table#scientificormusical.undecided + table#crackfiller td:first-child,
-            table#scientificormusical.undecided td.scientific {
-                -webkit-transition: none;
-                transition: none;
-            }
-            table#scientificormusical.undecided td > div {
-                -webkit-transition: none;
-                transition: none;
-            }
-        </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anzony Quispe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ===========================================
+           DESIGN A2: REFINED MINIMALIST
+           Typography-focused with subtle visual interest
+           Elegant accents, refined details
+           =========================================== */
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        <script type="text/javascript" src="js/main.js"></script>
-        <script>
-            function scientific() {
-                chooseMode('scientific');
+        :root {
+            --text: #1a1a1a;
+            --text-light: #555;
+            --text-muted: #888;
+            --accent: #1e40af;
+            --accent-light: #dbeafe;
+            --border: #e5e5e5;
+            --bg-subtle: #fafafa;
+        }
+
+        html {
+            font-size: 17px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            line-height: 1.75;
+            color: var(--text);
+            background: #fff;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        /* Layout */
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        /* Header with subtle visual interest */
+        .header {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: start;
+            margin-bottom: 3rem;
+            padding-bottom: 2.5rem;
+            border-bottom: 2px solid var(--text);
+        }
+
+        .photo {
+            width: 110px;
+            height: 110px;
+            border-radius: 6px;
+            object-fit: cover;
+            object-position: center 15%;
+        }
+
+        .header-info {
+            padding-top: 0.25rem;
+        }
+
+        .name {
+            font-size: 2.25rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            line-height: 1.15;
+            margin-bottom: 0.4rem;
+        }
+
+        .title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .title a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .title a:hover {
+            text-decoration: underline;
+        }
+
+        /* Navigation with pill style */
+        .nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.4rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+
+        .nav a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* Bio with accent highlight */
+        .bio {
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--accent);
+        }
+
+        .bio p {
+            margin-bottom: 1rem;
+            color: var(--text-light);
+        }
+
+        .bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .bio strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .bio a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+        }
+
+        .bio a:hover {
+            border-bottom-color: var(--accent);
+        }
+
+        /* Section with visual marker */
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-marker {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+
+        .section-line {
+            flex-grow: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Paper items with hover effect */
+        .paper {
+            margin-bottom: 1.75rem;
+            padding: 1rem 1.25rem;
+            margin-left: -1.25rem;
+            margin-right: -1.25rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .paper:hover {
+            background: var(--bg-subtle);
+        }
+
+        .paper:last-child {
+            margin-bottom: 0;
+        }
+
+        .paper-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 0.3rem;
+            color: var(--text);
+        }
+
+        .paper-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .paper-title a:hover {
+            color: var(--accent);
+        }
+
+        .paper-authors {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            color: var(--text-light);
+            line-height: 1.5;
+        }
+
+        .paper-authors a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .paper-venue {
+            font-style: italic;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+
+        .paper-links {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .paper-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .paper-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Abstract toggle */
+        .abstract-toggle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+
+        .abstract-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .abstract-toggle .arrow {
+            transition: transform 0.2s;
+            font-size: 0.65rem;
+        }
+
+        .abstract-toggle.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        .paper-abstract {
+            display: none;
+            margin-top: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-subtle);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            border-left: 2px solid var(--accent-light);
+        }
+
+        .paper-abstract.show {
+            display: block;
+        }
+
+        /* Software with accent bar */
+        .software-item {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--accent-light);
+            transition: border-color 0.2s;
+        }
+
+        .software-item:hover {
+            border-left-color: var(--accent);
+        }
+
+        .software-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .software-name a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .software-name a:hover {
+            color: var(--accent);
+        }
+
+        .software-desc {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-top: 0.15rem;
+        }
+
+        .software-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        .software-meta .downloads {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .download-badge {
+            height: 18px;
+            vertical-align: middle;
+            border-radius: 3px;
+        }
+
+        .software-links {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .software-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .software-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Team in elegant grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .team-member {
+            padding: 0.75rem 1rem;
+            background: var(--bg-subtle);
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .team-member:hover {
+            background: var(--accent-light);
+        }
+
+        .team-name {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .team-name a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .team-name a:hover {
+            color: var(--accent);
+        }
+
+        .team-affiliation {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Teaching - clean table style */
+        .teaching-list {
+            border-top: 1px solid var(--border);
+        }
+
+        .teaching-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .teaching-course {
+            font-size: 0.95rem;
+        }
+
+        .teaching-meta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* Alumni section */
+        .course-block {
+            margin-bottom: 2rem;
+        }
+
+        .course-header {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .course-header a {
+            font-size: 0.75rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem 1rem;
+        }
+
+        .student-name {
+            font-size: 0.9rem;
+        }
+
+        .student-name a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .student-name a:hover {
+            color: var(--accent);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--text);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: var(--accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            html { font-size: 16px; }
+            .header {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            function musical() {
-                chooseMode('musical');
+            .photo {
+                margin: 0 auto;
             }
-            function chooseMode(mode) {
-                document.getElementById('scientificormusical').className = mode;
-                window.setTimeout(function() {
-                    document.getElementById('scientificormusical').className = mode + ' rmlinks';
-                }, 500);
-                window.setTimeout(function() {
-                    document.location = mode + '/';
-                }, 1200);
+            .nav {
+                justify-content: center;
             }
-            function erdosBacon() {
-                document.getElementById('scientificormusical').className = 'erdosbacon';
-                window.setTimeout(function() {
-                    document.location = 'erdos-bacon.html';
-                }, 1000);
+            .bio {
+                padding-left: 1rem;
             }
-            function reset() {
-            document.getElementById('scientificormusical').className = 'undecided';
+            .team-grid {
+                grid-template-columns: 1fr;
             }
+            .students-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .teaching-item {
+                flex-direction: column;
+                gap: 0.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <img src="assets/img/profile.jpg" alt="Anzony Quispe" class="photo">
+            <div class="header-info">
+                <h1 class="name">Anzony Quispe</h1>
+                <p class="title">Research Assistant at <a href="https://www.sciencespo.fr/department-economics/" target="_blank">Sciences Po Paris</a></p>
+                <nav class="nav">
+                    <a href="cv/AQ_CV.pdf" target="_blank">CV</a>
+                    <a href="https://github.com/anzonyquispe" target="_blank">GitHub</a>
+                    <a href="https://scholar.google.com" target="_blank">Scholar</a>
+                    <a href="did-book/" target="_blank">DiD Book</a>
+                    <a href="mailto:anzony.quispe@gmail.com">Contact</a>
+                </nav>
+            </div>
+        </header>
 
-        </script>
-        <title>Anzony Quispe's Home Page</title>
+        <section class="bio">
+            <p>
+                I am a researcher working at the intersection of <strong>econometrics</strong>, <strong>causal inference</strong>,
+                and <strong>computational methods</strong>. My work focuses on developing difference-in-differences estimators,
+                machine learning applications for causal inference, and environmental economics.
+            </p>
+            <p>
+                I develop open-source statistical software used by researchers worldwide, with over 170,000 downloads.
+                Previously, I was a Research Specialist at <a href="https://spia.princeton.edu/" target="_blank">Princeton SPIA</a>.
+            </p>
+            <p>
+                <strong>Education:</strong> M.Sc. Economics, <a href="https://www.udesa.edu.ar/" target="_blank">Universidad de San Andres</a>.
+                B.Sc. Economics, <a href="http://www.lamolina.edu.pe/" target="_blank">Universidad Nacional Agraria La Molina</a>.
+            </p>
+        </section>
 
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Working Papers</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="working-papers"></div>
+        </section>
 
-    </head>
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Publications</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="publications"></div>
+        </section>
 
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Software</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="software"></div>
+        </section>
 
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Book</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="books"></div>
+        </section>
 
-    <body onload="setupListeners()">
-        <div id="mobileclipper">
-        
-            <script>setScientificOrMusicalHeight();</script>
-        
-            <table id="scientificormusical" class="undecided">
-                <tr style='height: 16.66666666%'>
-                    <td class="scientific">
-                        <div>
-                            <h1 class="oneoftwo">Anzony</h1>
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Research Team</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="team" class="team-grid"></div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Teaching</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="teaching" class="teaching-list"></div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
+                <span class="section-title">Alumni</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="alumni"></div>
+        </section>
+
+        <footer class="footer">
+            <span>&copy; 2025 Anzony Quispe</span>
+            <a href="mailto:anzony.quispe@gmail.com">anzony.quispe@gmail.com</a>
+        </footer>
+    </div>
+
+    <script src="js/data.js"></script>
+    <script>
+        // Toggle abstract visibility
+        function toggleAbstract(id) {
+            const abstract = document.getElementById('abstract-' + id);
+            const toggle = document.getElementById('toggle-' + id);
+            if (abstract && toggle) {
+                abstract.classList.toggle('show');
+                toggle.classList.toggle('open');
+            }
+        }
+
+        // Format number with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Fetch PyPI download statistics
+        async function fetchPyPIDownloads(packageName, index) {
+            try {
+                const response = await fetch(`https://pypistats.org/api/packages/${packageName}/overall`);
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+
+                // Sum all downloads from the data
+                let totalDownloads = 0;
+                if (data.data) {
+                    data.data.forEach(item => {
+                        if (item.category === 'without_mirrors') {
+                            totalDownloads += item.downloads;
+                        }
+                    });
+                }
+
+                // Update the DOM
+                const element = document.getElementById('downloads-' + index);
+                if (element) {
+                    element.textContent = formatNumber(totalDownloads);
+                }
+            } catch (error) {
+                // If API fails, show fallback
+                const element = document.getElementById('downloads-' + index);
+                if (element) {
+                    element.textContent = '—';
+                }
+            }
+        }
+
+        function render() {
+            // Working Papers
+            const wpContainer = document.getElementById('working-papers');
+            if (wpContainer && siteData.workingPapers) {
+                wpContainer.innerHTML = siteData.workingPapers.map((p, i) => `
+                    <div class="paper">
+                        <div class="paper-title">${p.url ? `<a href="${p.url}" target="_blank">${p.title}</a>` : p.title}</div>
+                        <div class="paper-authors">${p.authors}</div>
+                        ${p.venue ? `<div class="paper-venue">${p.venue}</div>` : ''}
+                        <div class="paper-links">
+                            ${p.abstract ? `<button class="abstract-toggle" id="toggle-wp-${i}" onclick="toggleAbstract('wp-${i}')"><span class="arrow">&#9654;</span> Abstract</button>` : ''}
+                            ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.text}</a>`).join('')}
                         </div>
-                    </td>
+                        ${p.abstract ? `<div class="paper-abstract" id="abstract-wp-${i}">${p.abstract}</div>` : ''}
+                    </div>
+                `).join('');
+            }
 
-                    <td class="wave" rowspan="5">
-                    </td>
+            // Publications
+            const pubContainer = document.getElementById('publications');
+            if (pubContainer && siteData.publications) {
+                pubContainer.innerHTML = siteData.publications.map(p => `
+                    <div class="paper">
+                        <div class="paper-title">${p.title}</div>
+                        <div class="paper-authors">${p.authors}</div>
+                        <div class="paper-venue">${p.venue}</div>
+                        ${p.links.length ? `<div class="paper-links">${p.links.map(l => `<a href="${l.url}" target="_blank">${l.text}</a>`).join('')}</div>` : ''}
+                    </div>
+                `).join('');
+            }
 
-                    <td class="musical">
-                        <div>
-                            <h1 class="twooftwo">Quispe</h1>
+            // Software
+            const swContainer = document.getElementById('software');
+            if (swContainer && siteData.software) {
+                swContainer.innerHTML = siteData.software.map((s, i) => `
+                    <div class="software-item">
+                        <div class="software-name"><a href="${s.repoUrl}" target="_blank">${s.name}</a></div>
+                        <div class="software-desc">${s.description}</div>
+                        <div class="software-meta">
+                            ${s.language}
+                            ${s.pypiName ? ` &middot; <img src="https://static.pepy.tech/badge/${s.pypiName}" alt="Downloads" class="download-badge">` : ''}
                         </div>
-                    </td>
-                </tr>
-
-                <tr style='height: 27.77777777%'>
-                    <td class="scientific">
-
-                        <div>
-                            <a href="scientific/science.html" >
-
-                                <h2>
-                                    Scientific Home Page<br>
-                                    <img src="images/math.png">
-                                </h2>
-                            </a>
+                        <div class="software-links">
+                            <a href="${s.repoUrl}" target="_blank">GitHub</a>
+                            ${s.pypiUrl ? `<a href="${s.pypiUrl}" target="_blank">PyPI</a>` : ''}
                         </div>
-                    </td>
+                    </div>
+                `).join('');
+            }
 
-                    <td class="musical">
-                        <div>
-                        <a href="worship/" onclick="this.blur(); musical(); return false;">
-                            <h2>
-                                Worship Home Page<br>
-                                <img src="images/music.png">
-                            </h2>
-                        </a>
+            // Books
+            const booksContainer = document.getElementById('books');
+            if (booksContainer && siteData.books) {
+                booksContainer.innerHTML = siteData.books.map(b => `
+                    <div class="software-item">
+                        <div class="software-name"><a href="${b.url}" target="_blank">${b.title}</a></div>
+                        <div class="software-desc">${b.description}</div>
+                        <div class="software-meta">${b.authors}</div>
+                    </div>
+                `).join('');
+            }
+
+            // Team
+            const teamContainer = document.getElementById('team');
+            if (teamContainer && siteData.team) {
+                teamContainer.innerHTML = siteData.team.map(t => `
+                    <div class="team-member">
+                        <div class="team-name">${t.url ? `<a href="${t.url}" target="_blank">${t.name}</a>` : t.name}</div>
+                        ${t.affiliation ? `<div class="team-affiliation">${t.affiliation}</div>` : ''}
+                    </div>
+                `).join('');
+            }
+
+            // Teaching
+            const teachContainer = document.getElementById('teaching');
+            if (teachContainer && siteData.teaching) {
+                teachContainer.innerHTML = siteData.teaching.map(t => `
+                    <div class="teaching-item">
+                        <span class="teaching-course">${t.course}</span>
+                        <span class="teaching-meta">${t.institution}, ${t.year}</span>
+                    </div>
+                `).join('');
+            }
+
+            // Alumni
+            const alumniContainer = document.getElementById('alumni');
+            if (alumniContainer && siteData.studentsByCourse) {
+                alumniContainer.innerHTML = siteData.studentsByCourse.map(course => `
+                    <div class="course-block">
+                        <div class="course-header">
+                            <span>${course.course} &middot; ${course.institution} ${course.year}</span>
+                            <a href="${course.repoUrl}" target="_blank">Repository &rarr;</a>
                         </div>
-                    </td>
-                </tr>
-
-                <tr style='height: 11.11111111%' class="erdosbaconbridge">
-                    <td class="scientific">
-                        <div>
-                        <h3 class="oneandtwoofthree">
-                            <a href="http://www.lamolina.edu.pe/" target="_blank" class="oneofthree">
-                                UNALM
-                            </a>
-                            <span class="twoofthree">
-                                <!-- <a href="erdos-bacon.html" class="twoofthreeinner"> -->
-                                <!-- &nbsp;&nbsp;&nbsp;&#151;&nbsp;&nbsp;&nbsp; -->
-                                <!-- </a> -->
-                            </span>
-                        </h3>
+                        <div class="students-grid">
+                            ${course.students.map(s => `<div class="student-name"><a href="${s.github}" target="_blank">${s.name}</a></div>`).join('')}
                         </div>
-                    </td>
-
-                    <td class="musical">
-                        <div>
-                            <h3 class="threeofthree">
-                                <a href="https://www.facebook.com/masnaciones" target="_blank" >
-                                Más Naciones
-                                </a>
-                            </h3>
-                        </div>
-                    </td>
-                </tr>
-
-                <tr style='height: 44.44444444%'>
-                    <td class="scientific"></td>
-                    <td class="musical"></td>
-                </tr>
-            </table>
-            <table id="crackfiller">
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </table>
-        </div>
-    </body>
+                    </div>
+                `).join('');
+            }
+        }
+        render();
+    </script>
+</body>
 </html>

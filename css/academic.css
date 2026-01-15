@@ -1,0 +1,450 @@
+/* ===========================================
+   ACADEMIC WEBSITE - Professional Style
+   Inspired by academic websites in Economics & CS
+   =========================================== */
+
+:root {
+    --primary-color: #800000;      /* Maroon - academic */
+    --text-color: #333333;
+    --text-muted: #666666;
+    --link-color: #0066cc;
+    --bg-color: #ffffff;
+    --sidebar-bg: #f8f8f8;
+    --border-color: #e0e0e0;
+    --font-serif: 'Crimson Text', Georgia, serif;
+    --font-sans: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Layout */
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--sidebar-bg);
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.sidebar-content {
+    padding: 40px 30px;
+}
+
+/* Profile Photo - Cropped to face */
+.profile-photo {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 20px;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 15%; /* Adjust to focus on face */
+}
+
+.name {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.title {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 2px;
+}
+
+.affiliation {
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.contact {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+    color: var(--text-muted);
+}
+
+.contact a {
+    color: var(--text-color);
+}
+
+/* Navigation */
+.nav ul {
+    list-style: none;
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.nav li {
+    margin-bottom: 8px;
+}
+
+.nav a {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    display: block;
+    padding: 5px 0;
+}
+
+.nav a:hover {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* External Links */
+.external-links {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.external-links a {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.external-links a:hover {
+    color: var(--link-color);
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 50px 60px;
+    max-width: 900px;
+}
+
+/* Sections */
+.section {
+    margin-bottom: 50px;
+}
+
+.section h2 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.section h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.section p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.section-note {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+/* Paper List */
+.paper-list {
+    list-style: none;
+}
+
+.paper-list li {
+    margin-bottom: 20px;
+    padding-left: 0;
+}
+
+.paper-title {
+    font-weight: 600;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 3px;
+}
+
+.paper-authors {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.paper-venue {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--text-muted);
+}
+
+.paper-links {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.paper-links a {
+    margin-right: 15px;
+}
+
+/* Software List */
+.software-list {
+    list-style: none;
+}
+
+.software-list li {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.software-list li:last-child {
+    border-bottom: none;
+}
+
+.software-name {
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.software-name a {
+    color: var(--primary-color);
+}
+
+.software-name a:hover {
+    color: var(--link-color);
+}
+
+.software-desc {
+    font-size: 0.95rem;
+    margin: 5px 0;
+}
+
+.software-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.software-links {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.software-links a {
+    margin-right: 15px;
+}
+
+/* Teaching List */
+.teaching-list {
+    list-style: none;
+}
+
+.teaching-list li {
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.teaching-info {
+    flex: 1;
+}
+
+.teaching-course {
+    font-weight: 600;
+}
+
+.teaching-role {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.teaching-meta {
+    text-align: right;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Students Grid */
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.student-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.student-name {
+    font-weight: 600;
+}
+
+.student-name a {
+    color: var(--text-color);
+}
+
+.student-name a:hover {
+    color: var(--link-color);
+}
+
+.student-info {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Collaborators Grid */
+.collaborators-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 25px;
+}
+
+.collaborator-item {
+    font-size: 0.95rem;
+}
+
+/* Footer */
+.footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Empty State */
+.empty-message {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        min-width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-content {
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+    }
+
+    .nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px 20px;
+        border-top: none;
+        padding-top: 0;
+    }
+
+    .nav li {
+        margin-bottom: 0;
+    }
+
+    .external-links {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 30px 20px;
+    }
+
+    .teaching-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .teaching-meta {
+        text-align: left;
+    }
+}
+
+/* Print */
+@media print {
+    .sidebar {
+        display: none;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 0;
+    }
+}
