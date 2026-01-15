@@ -92,7 +92,8 @@ const siteData = {
             language: "Python",
             repoUrl: "https://github.com/chaisemartinPackages/did_had",
             pypiUrl: "https://pypi.org/project/did-had/",
-            downloads: "loading..."
+            downloads: "loading...",
+            isNew: true  // Remove this flag once package has download stats
         },
         {
             name: "npiv",

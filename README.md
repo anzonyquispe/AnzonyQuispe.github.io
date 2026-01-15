@@ -72,12 +72,15 @@ software: [
         language: "Python",             // or "Python/R/Stata"
         repoUrl: "https://github.com/...",
         pypiUrl: "https://pypi.org/project/...",  // null if not on PyPI
-        downloads: "loading..."         // Keep as is (auto-updates)
+        downloads: "loading...",        // Keep as is (auto-updates)
+        isNew: true                     // Optional: shows "new" badge instead of downloads
     }
 ]
 ```
 
 **Note:** Download badges auto-update from [shields.io](https://shields.io). Use the exact PyPI package name.
+
+**For new packages:** Add `isNew: true` to show a "new" badge. Remove this flag once the package has download statistics (usually after a few days).
 
 ### 4. Books
 
@@ -207,10 +210,11 @@ Example for a new package:
 
 ## Troubleshooting
 
-### Download badges not showing
+### Download badges showing "package not found"
+- **New packages:** PyPI download stats take a few days to populate. Add `isNew: true` to show a "new" badge instead
 - Verify the `pypiName` matches the exact PyPI package name
-- New packages may take a few hours to appear in badge services
 - Check badge URL directly: `https://img.shields.io/pypi/dm/PACKAGE_NAME`
+- Once stats are available, remove the `isNew: true` flag from `js/data.js`
 
 ### Website not updating after push
 - Wait 1-2 minutes for GitHub Pages to deploy
