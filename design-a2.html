@@ -68,13 +68,7 @@
             height: 110px;
             border-radius: 6px;
             object-fit: cover;
-            object-position: center 20%;
-            filter: grayscale(100%);
-            transition: filter 0.4s ease;
-        }
-
-        .photo:hover {
-            filter: grayscale(0%);
+            object-position: center 15%;
         }
 
         .header-info {
@@ -273,6 +267,53 @@
             text-decoration: underline;
         }
 
+        /* Abstract toggle */
+        .abstract-toggle {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: color 0.2s;
+        }
+
+        .abstract-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .abstract-toggle .arrow {
+            transition: transform 0.2s;
+            font-size: 0.65rem;
+        }
+
+        .abstract-toggle.open .arrow {
+            transform: rotate(90deg);
+        }
+
+        .paper-abstract {
+            display: none;
+            margin-top: 0.75rem;
+            padding: 1rem;
+            background: var(--bg-subtle);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: var(--text-light);
+            border-left: 2px solid var(--accent-light);
+        }
+
+        .paper-abstract.show {
+            display: block;
+        }
+
         /* Software with accent bar */
         .software-item {
             margin-bottom: 1.5rem;
@@ -316,6 +357,32 @@
         .software-meta .downloads {
             color: var(--accent);
             font-weight: 600;
+        }
+
+        .download-badge {
+            height: 18px;
+            vertical-align: middle;
+            border-radius: 3px;
+        }
+
+        .software-links {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            margin-top: 0.4rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .software-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .software-links a:hover {
+            text-decoration: underline;
         }
 
         /* Team in elegant grid */
@@ -484,6 +551,7 @@
                     <a href="cv/AQ_CV.pdf" target="_blank">CV</a>
                     <a href="https://github.com/anzonyquispe" target="_blank">GitHub</a>
                     <a href="https://scholar.google.com" target="_blank">Scholar</a>
+                    <a href="did-book/" target="_blank">DiD Book</a>
                     <a href="mailto:anzony.quispe@gmail.com">Contact</a>
                 </nav>
             </div>
@@ -535,6 +603,15 @@
         <section class="section">
             <div class="section-header">
                 <span class="section-marker"></span>
+                <span class="section-title">Book</span>
+                <span class="section-line"></span>
+            </div>
+            <div id="books"></div>
+        </section>
+
+        <section class="section">
+            <div class="section-header">
+                <span class="section-marker"></span>
                 <span class="section-title">Research Team</span>
                 <span class="section-line"></span>
             </div>
@@ -567,15 +644,66 @@
 
     <script src="js/data.js"></script>
     <script>
+        // Toggle abstract visibility
+        function toggleAbstract(id) {
+            const abstract = document.getElementById('abstract-' + id);
+            const toggle = document.getElementById('toggle-' + id);
+            if (abstract && toggle) {
+                abstract.classList.toggle('show');
+                toggle.classList.toggle('open');
+            }
+        }
+
+        // Format number with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Fetch PyPI download statistics
+        async function fetchPyPIDownloads(packageName, index) {
+            try {
+                const response = await fetch(`https://pypistats.org/api/packages/${packageName}/overall`);
+                if (!response.ok) throw new Error('API error');
+                const data = await response.json();
+
+                // Sum all downloads from the data
+                let totalDownloads = 0;
+                if (data.data) {
+                    data.data.forEach(item => {
+                        if (item.category === 'without_mirrors') {
+                            totalDownloads += item.downloads;
+                        }
+                    });
+                }
+
+                // Update the DOM
+                const element = document.getElementById('downloads-' + index);
+                if (element) {
+                    element.textContent = formatNumber(totalDownloads);
+                }
+            } catch (error) {
+                // If API fails, show fallback
+                const element = document.getElementById('downloads-' + index);
+                if (element) {
+                    element.textContent = '—';
+                }
+            }
+        }
+
         function render() {
             // Working Papers
             const wpContainer = document.getElementById('working-papers');
             if (wpContainer && siteData.workingPapers) {
-                wpContainer.innerHTML = siteData.workingPapers.map(p => `
+                wpContainer.innerHTML = siteData.workingPapers.map((p, i) => `
                     <div class="paper">
-                        <div class="paper-title">${p.title}</div>
+                        <div class="paper-title">${p.url ? `<a href="${p.url}" target="_blank">${p.title}</a>` : p.title}</div>
                         <div class="paper-authors">${p.authors}</div>
-                        ${p.links.length ? `<div class="paper-links">${p.links.map(l => `<a href="${l.url}" target="_blank">${l.text}</a>`).join('')}</div>` : ''}
+                        ${p.venue ? `<div class="paper-venue">${p.venue}</div>` : ''}
+                        <div class="paper-links">
+                            ${p.abstract ? `<button class="abstract-toggle" id="toggle-wp-${i}" onclick="toggleAbstract('wp-${i}')"><span class="arrow">&#9654;</span> Abstract</button>` : ''}
+                            ${p.links.map(l => `<a href="${l.url}" target="_blank">${l.text}</a>`).join('')}
+                        </div>
+                        ${p.abstract ? `<div class="paper-abstract" id="abstract-wp-${i}">${p.abstract}</div>` : ''}
                     </div>
                 `).join('');
             }
@@ -596,11 +724,30 @@
             // Software
             const swContainer = document.getElementById('software');
             if (swContainer && siteData.software) {
-                swContainer.innerHTML = siteData.software.map(s => `
+                swContainer.innerHTML = siteData.software.map((s, i) => `
                     <div class="software-item">
                         <div class="software-name"><a href="${s.repoUrl}" target="_blank">${s.name}</a></div>
                         <div class="software-desc">${s.description}</div>
-                        <div class="software-meta">${s.language} &middot; <span class="downloads">${s.downloads} downloads</span></div>
+                        <div class="software-meta">
+                            ${s.language}
+                            ${s.pypiName ? ` &middot; <img src="https://static.pepy.tech/badge/${s.pypiName}" alt="Downloads" class="download-badge">` : ''}
+                        </div>
+                        <div class="software-links">
+                            <a href="${s.repoUrl}" target="_blank">GitHub</a>
+                            ${s.pypiUrl ? `<a href="${s.pypiUrl}" target="_blank">PyPI</a>` : ''}
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Books
+            const booksContainer = document.getElementById('books');
+            if (booksContainer && siteData.books) {
+                booksContainer.innerHTML = siteData.books.map(b => `
+                    <div class="software-item">
+                        <div class="software-name"><a href="${b.url}" target="_blank">${b.title}</a></div>
+                        <div class="software-desc">${b.description}</div>
+                        <div class="software-meta">${b.authors}</div>
                     </div>
                 `).join('');
             }
