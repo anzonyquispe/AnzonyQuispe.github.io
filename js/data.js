@@ -123,13 +123,19 @@ const siteData = {
             title: "Difference-in-Differences with Staggered Treatment: Package Comparison",
             description: "A comprehensive comparison of DiD packages across R, Python, and Stata for staggered treatment adoption designs.",
             authors: "Online Book",
-            url: "did-book/index.html"
+            url: "https://anzonyquispe.github.io/did_book/"
         },
         {
             title: "Inference on Causal and Structural Parameters using ML and AI",
             description: "Course materials for MIT 14.38 covering modern causal inference methods.",
             authors: 'with <a href="https://alexanderquispe.github.io/" target="_blank">Alexander Quispe</a> (2021)',
             url: "https://d2cml-ai.github.io/14.388_r/"
+        },
+        {
+            title: "Peru Environmental Analysis: Fires & Deforestation",
+            description: "Municipality-level analysis of NASA VIIRS fire data and Global Forest Watch deforestation using GeoAgent.",
+            authors: "GeoAgent Analysis",
+            url: "geoagent-analysis/index.html"
         }
     ],
 
